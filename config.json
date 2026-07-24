@@ -1,0 +1,90 @@
+{
+    "personal": {
+        "name": "Prakhar Kapoor",
+        "title": "Software Engineer",
+        "subtitle": "Competitive Programmer | ICPC Asia West Regionalist",
+        "github_username": "codingprakharkapoor",
+        "birthday": "2004-01-01",
+        "location": "Prayagraj, India",
+        "email": "your_email@example.com",
+        "website": "https://yourwebsite.com"
+    },
+
+    "socials": {
+        "linkedin": "https://linkedin.com/in/yourprofile",
+        "twitter": "",
+        "portfolio": "",
+        "leetcode": "YOUR_LEETCODE_USERNAME",
+        "codeforces": "YOUR_CODEFORCES_USERNAME",
+        "codechef": "YOUR_CODECHEF_USERNAME",
+        "hackerrank": "YOUR_HACKERRANK_USERNAME"
+    },
+
+    "system": {
+        "os": "Windows 11",
+        "editor": "VS Code",
+        "terminal": "PowerShell",
+        "shell": "PowerShell"
+    },
+
+    "languages": [
+        "Java",
+        "Python",
+        "C++",
+        "JavaScript",
+        "SQL"
+    ],
+
+    "frameworks": [
+        "Spring Boot",
+        "React",
+        "Next.js",
+        "Node.js"
+    ],
+
+    "databases": [
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB"
+    ],
+
+    "tools": [
+        "Git",
+        "GitHub",
+        "Docker",
+        "Linux"
+    ],
+
+    "currently_working_on": [
+        "The Prakhar Chronicle",
+        "GitHub Terminal Dashboard"
+    ],
+
+    "achievements": [
+        "ICPC Asia West Regionalist",
+        "Google Software Development Apprentice",
+        "Smart India Hackathon"
+    ],
+
+    "sections": {
+        "show_age": true,
+        "show_followers": true,
+        "show_stars": true,
+        "show_repositories": true,
+        "show_commits": true,
+        "show_contributed_repositories": true,
+        "show_lines_of_code": true,
+        "show_languages": true,
+        "show_frameworks": true,
+        "show_tools": true,
+        "show_competitive_programming": true,
+        "show_achievements": true,
+        "show_socials": true
+    },
+
+    "theme": {
+        "mode": "dark",
+        "ascii_file": "ascii.txt",
+        "template": "template.md"
+    }
+}
