@@ -1,349 +1,230 @@
-"""
-svg_renderer.py
-
-SVG renderer for the GitHub Terminal Profile.
-"""
-
 from pathlib import Path
-from xml.sax.saxutils import escape
+
+USERNAME = "prakhar@kapoor"
+
+OS = "Windows 11, Android 14, Linux"
+AGE = "22 years, 5 months, 29 days"
+HOST = "GLA University"
+KERNEL = "Software Engineer"
+IDE = "VS Code"
+
+PROGRAMMING_LANGUAGES = "Java, Python, C++, JavaScript"
+COMPUTER_LANGUAGES = "HTML, CSS, JSON, YAML"
+REAL_LANGUAGES = "English, Hindi"
+
+SOFTWARE_HOBBIES = "Competitive Programming"
+HARDWARE_HOBBIES = "PC Building"
+
+EMAIL_PERSONAL = "abc@gmail.com"
+EMAIL_WORK = "abc@company.com"
+WEBSITE = "prakhar.dev"
+LINKEDIN = "PrakharKapoor"
+DISCORD = "codingprakhar"
+
+REPOS = 36
+CONTRIBUTED_REPOS = 0
+STARS = 2
+COMMITS = 91
+FOLLOWERS = 7
+
+LOC = 135240
+LOC_ADD = 168421
+LOC_DEL = 33181
+
+TOTAL_WIDTH = 56
+
+
+def make_dots(label: str, value) -> str:
+    value = str(value)
+    return "." * max(1, TOTAL_WIDTH - len(label) - len(value))
+
+
+# --------------------------------------------------
+# GitHub stats
+# --------------------------------------------------
+
+STAR_DOTS = make_dots("Stars:", STARS)
+
+star_section = f"Stars:{STAR_DOTS}{STARS}"
+
+repo_dots = "." * max(
+    1,
+    TOTAL_WIDTH
+    - len("Repos:")
+    - len(str(REPOS))
+    - len(f" {{Contributed: {CONTRIBUTED_REPOS}}} | ")
+    - len(star_section)
+)
+
+REPO_DOTS = repo_dots
+
+
+FOLLOWER_DOTS = make_dots("Followers:", FOLLOWERS)
+
+follower_section = f"Followers:{FOLLOWER_DOTS}{FOLLOWERS}"
+
+commit_dots = "." * max(
+    1,
+    TOTAL_WIDTH
+    - len("Commits:")
+    - len(str(COMMITS))
+    - len(" | ")
+    - len(follower_section)
+)
+
+COMMIT_DOTS = commit_dots
+
+
+LOC_DOTS = make_dots(
+    "Lines of Code on GitHub:",
+    LOC,
+)
+
+LOC_DEL_DOTS = " " * max(
+    1,
+    len(str(LOC_ADD)) - len(str(LOC_DEL))
+)
+
+replacements = {
+
+    "USERNAME": USERNAME,
+
+    "OS": OS,
+    "OS_DOTS": make_dots("OS:", OS),
+
+    "AGE": AGE,
+    "AGE_DOTS": make_dots("Uptime:", AGE),
+
+    "HOST": HOST,
+    "HOST_DOTS": make_dots("Host:", HOST),
+
+    "KERNEL": KERNEL,
+    "KERNAL_DOTS": make_dots("Kernel:", KERNEL),
+
+    "IDE": IDE,
+    "IDE_DOTS": make_dots("IDE:", IDE),
+
+    "PROGRAMMING_LANGUAGES": PROGRAMMING_LANGUAGES,
+    "PROLANG_DOTS": make_dots(
+        "Languages.Programming:",
+        PROGRAMMING_LANGUAGES,
+    ),
+
+    "COMPUTER_LANGUAGES": COMPUTER_LANGUAGES,
+    "COMPLANG_DOTS": make_dots(
+        "Languages.Computer:",
+        COMPUTER_LANGUAGES,
+    ),
+
+    "REAL_LANGUAGES": REAL_LANGUAGES,
+    "REALLANG_DOTS": make_dots(
+        "Languages.Real:",
+        REAL_LANGUAGES,
+    ),
+
+    "SOFTWARE_HOBBIES": SOFTWARE_HOBBIES,
+    "SOFT_HOBBIES_DOTS": make_dots(
+        "Hobbies.Software:",
+        SOFTWARE_HOBBIES,
+    ),
+
+    "HARDWARE_HOBBIES": HARDWARE_HOBBIES,
+    "HARD_HOBBIES_DOTS": make_dots(
+        "Hobbies.Hardware:",
+        HARDWARE_HOBBIES,
+    ),
+
+    "EMAIL_PERSONAL": EMAIL_PERSONAL,
+    "PERSONAL_EMAIL_DOTS": make_dots(
+        "Email.Personal:",
+        EMAIL_PERSONAL,
+    ),
+
+    "EMAIL_WORK": EMAIL_WORK,
+    "WORK_EMAIL_DOTS": make_dots(
+        "Email.Work:",
+        EMAIL_WORK,
+    ),
+
+    "WEBSITE": WEBSITE,
+    "WEBSITE_DOTS": make_dots(
+        "Website:",
+        WEBSITE,
+    ),
+
+    "LINKEDIN": LINKEDIN,
+    "LINKEDIN_DOTS": make_dots(
+        "LinkedIn:",
+        LINKEDIN,
+    ),
+
+    "DISCORD": DISCORD,
+    "DISCORD_DOTS": make_dots(
+        "Discord:",
+        DISCORD,
+    ),
+
+    "REPOS": REPOS,
+    "REPO_DOTS": REPO_DOTS,
+
+    "CONTRIBUTED_REPOS": CONTRIBUTED_REPOS,
+
+    "STARS": STARS,
+    "STAR_DOTS": STAR_DOTS,
+
+    "COMMITS": COMMITS,
+    "COMMIT_DOTS": COMMIT_DOTS,
+
+    "FOLLOWERS": FOLLOWERS,
+    "FOLLOWER_DOTS": FOLLOWER_DOTS,
+
+    "LOC": LOC,
+    "LOC_DOTS": LOC_DOTS,
+
+    "LOC_ADD": LOC_ADD,
+
+    "LOC_DEL": LOC_DEL,
+    "LOC_DEL_DOTS": LOC_DEL_DOTS,
+}
 
 
 class SVGRenderer:
 
-    # ------------------------------------------------------------
-    # Constructor
-    # ------------------------------------------------------------
-
-    def __init__(self):
-
-        # Canvas
-
-        self.width = 1200
-        self.height = 700
-        self.line_width = 42
-        self.min_dots = 3
-
-        # Layout
-
-        self.padding = 30
-        self.left_x = 30
-        self.right_x = 420
-
-        self.line_height = 22
-
-        self.left_cursor = 50
-        self.right_cursor = 50
-
-        # Colors
-
-        self.background = "#161b22"
-
-        self.text = "#c9d1d9"
-
-        self.key = "#ffa657"
-
-        self.value = "#a5d6ff"
-
-        self.green = "#3fb950"
-
-        self.red = "#f85149"
-
-        self.gray = "#8b949e"
-
-        # SVG content
-
-        self.elements = []
-
-        self._create_background()
-        # Typography
-
-        self.font_family = "Consolas, 'Courier New', monospace"
-        self.font_size = 18
-
-        # Terminal columns (characters, not pixels)
-
-        self.key_width = 20
-
-    # ------------------------------------------------------------
-    # Background
-    # ------------------------------------------------------------
-
-    def _create_background(self):
-
-        self.elements.append(
-            f'<rect width="{self.width}" height="{self.height}" fill="{self.background}" />'
-        )
-
-    # ------------------------------------------------------------
-    # Resize canvas
-    # ------------------------------------------------------------
-
-    def set_size(self, width, height):
-
-        self.width = width
-        self.height = height
-
-        self.elements[0] = (
-            f'<rect width="{self.width}" '
-            f'height="{self.height}" '
-            f'fill="{self.background}" />'
-        )
-
-    # ------------------------------------------------------------
-    # Generic text
-    # ------------------------------------------------------------
-
-    def text_at(
+    def __init__(
         self,
-        x,
-        y,
-        text,
-        color=None,
-        size=18,
-        weight="normal",
+        template="terminal.svg",
+        output_svg="README.svg",
+        output_readme="README.md",
     ):
+        self.template = Path(template)
+        self.output_svg = Path(output_svg)
+        self.output_readme = Path(output_readme)
 
-        color = color or self.text
+    def render(self):
 
-        text = escape(str(text))
+        svg = self.template.read_text(encoding="utf-8")
 
-        self.elements.append(
-            f'''
-<text
-    x="{x}"
-    y="{y}"
-    fill="{color}"
-    font-family="Consolas, 'Courier New', monospace"
-    font-size="{size}"
-    font-weight="{weight}">
-{text}
-</text>
-'''.strip()
-        )
+        for key, value in replacements.items():
+            svg = svg.replace(
+                f"{{{{{key}}}}}",
+                str(value),
+            )
 
-    # ------------------------------------------------------------
-    # Left column
-    # ------------------------------------------------------------
-
-    def left(self, text, color=None, size=18):
-
-        self.text_at(
-            self.left_x,
-            self.left_cursor,
-            text,
-            color=color,
-            size=size,
-        )
-
-        self.left_cursor += self.line_height
-
-    # ------------------------------------------------------------
-    # Right column
-    # ------------------------------------------------------------
-
-    def right(self, text, color=None, size=18):
-
-        self.text_at(
-            self.right_x,
-            self.right_cursor,
-            text,
-            color=color,
-            size=size,
-        )
-
-        self.right_cursor += self.line_height
-
-    # ------------------------------------------------------------
-    # Blank line
-    # ------------------------------------------------------------
-
-    def blank_left(self):
-
-        self.left_cursor += self.line_height
-
-    def blank_right(self):
-
-        self.right_cursor += self.line_height
-
-    # ------------------------------------------------------------
-    # ASCII renderer
-    # ------------------------------------------------------------
-
-    def add_ascii(self, ascii_art):
-
-        if isinstance(ascii_art, str):
-            lines = ascii_art.splitlines()
-        else:
-            lines = ascii_art
-
-        for line in lines:
-            self.left(line)
-
-    # ------------------------------------------------------------
-    # Title
-    # ------------------------------------------------------------
-
-    def title(self, title):
-
-        self.right(
-            title,
-            color=self.value,
-            size=24,
-        )
-
-    # ------------------------------------------------------------
-    # Subtitle
-    # ------------------------------------------------------------
-
-    def subtitle(self, text):
-
-        self.right(
-            text,
-            color=self.gray,
-            size=16,
-        )
-
-    # ------------------------------------------------------------
-    # Horizontal divider
-    # ------------------------------------------------------------
-
-    def divider(self):
-
-        self.right(
-            "—" * self.line_width,
-            color=self.gray,
-        )
-
-    # ------------------------------------------------------------
-    # Auto resize height
-    # ------------------------------------------------------------
-
-    def fit_height(self):
-
-        lowest = max(
-            self.left_cursor,
-            self.right_cursor,
-        )
-
-        self.set_size(
-            self.width,
-            lowest + self.padding,
-        )
-
-    # ------------------------------------------------------------
-    # Save
-    # ------------------------------------------------------------
-
-    def save(self, filename="terminal.svg"):
-
-        self.fit_height()
-
-        svg = f'''<svg
-xmlns="http://www.w3.org/2000/svg"
-width="{self.width}"
-height="{self.height}"
-viewBox="0 0 {self.width} {self.height}">
-
-{"".join(self.elements)}
-
-</svg>
-'''
-
-        Path(filename).write_text(
+        self.output_svg.write_text(
             svg,
             encoding="utf-8",
         )
 
-    # ------------------------------------------------------------
-    # Key / Value Line
-    # ------------------------------------------------------------
+        readme = f"""<p align="center">
+  <img src="{self.output_svg.name}" alt="GitHub Terminal Profile">
+</p>
+"""
 
-    def key_value(
-        self,
-        key,
-        value,
-        key_color=None,
-        value_color=None,
-    ):
-
-        key_color = key_color or self.key
-        value_color = value_color or self.value
-
-        key = escape(str(key))
-        value = escape(str(value))
-
-        # dots = "." * max(2, self.key_width - len(str(key)))
-        dots = "." * max(
-            self.min_dots,
-            self.line_width - len(key) - len(value)
-        )
-
-        self.elements.append(
-            f"""
-    <text
-        x="{self.right_x}"
-        y="{self.right_cursor}"
-        font-family="{self.font_family}"
-        font-size="{self.font_size}">
-
-    <tspan fill="{key_color}">{key}</tspan><tspan fill="{self.gray}">{dots}</tspan><tspan fill="{value_color}">{value}</tspan>
-
-    </text>
-    """.strip()
-        )
-
-        self.right_cursor += self.line_height
-    # ------------------------------------------------------------
-    # Section Heading
-    # ------------------------------------------------------------
-
-    def section_heading(self, title):
-
-        self.right(
-            title,
-            color=self.value,
-            size=20,
-        )
-
-        self.divider()
-
-    # ------------------------------------------------------------
-    # Complete Section
-    # ------------------------------------------------------------
-
-    def section(self, title, rows):
-
-        self.section_heading(title)
-
-        for key, value in rows:
-            self.key_value(key, value)
-
-        self.blank_right()
-
-    # ------------------------------------------------------------
-    # Colored Statistics
-    # ------------------------------------------------------------
-
-    def statistic(self, key, value):
-
-        color = self.value
-
-        if isinstance(value, (int, float)):
-            value = f"{value:,}"
-
-        value = str(value)
-
-        if value.startswith("+"):
-            color = self.green
-
-        elif value.startswith("-"):
-            color = self.red
-
-        self.key_value(
-            key,
-            value,
-            value_color=color,
+        self.output_readme.write_text(
+            readme,
+            encoding="utf-8",
         )
 
 
-renderer = SVGRenderer()
+if __name__ == "__main__":
+    SVGRenderer().render()
