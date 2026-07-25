@@ -9,11 +9,13 @@ from dateutil.relativedelta import relativedelta
 
 
 # ---------------------------------------------------------
-# AGE
+# UPTIME
 # ---------------------------------------------------------
 
-def calculate_age(birthday: str) -> str:
+def calculate_uptime(birthday: str) -> str:
     """
+    Calculates the time elapsed since the given birthday.
+
     Birthday format:
         YYYY-MM-DD
 
@@ -22,14 +24,30 @@ def calculate_age(birthday: str) -> str:
     """
 
     birth = datetime.strptime(birthday, "%Y-%m-%d")
+    now = datetime.now()
 
-    diff = relativedelta(datetime.now(), birth)
+    diff = relativedelta(now, birth)
 
     return (
         f"{diff.years} year{'s' if diff.years != 1 else ''}, "
         f"{diff.months} month{'s' if diff.months != 1 else ''}, "
         f"{diff.days} day{'s' if diff.days != 1 else ''}"
     )
+
+
+# ---------------------------------------------------------
+# AGE (Backward Compatibility)
+# ---------------------------------------------------------
+
+def calculate_age(birthday: str) -> str:
+    """
+    Alias kept for backward compatibility.
+
+    Existing code still calling calculate_age()
+    will continue to work.
+    """
+
+    return calculate_uptime(birthday)
 
 
 # ---------------------------------------------------------
@@ -61,14 +79,17 @@ def list_to_string(items) -> str:
     Java, Python, C++
     """
 
-    return ", ".join(items)
+    if not items:
+        return ""
+
+    return ", ".join(str(item) for item in items)
 
 
 # ---------------------------------------------------------
 # TERMINAL ALIGNMENT
 # ---------------------------------------------------------
 
-def terminal_line(title: str, value: str, width: int = 28) -> str:
+def terminal_line(title: str, value, width: int = 28) -> str:
     """
     Example
 
@@ -127,7 +148,7 @@ def write_file(filename: str, data: str):
 
 def load_ascii(filename: str) -> str:
     """
-    Loads ascii.txt
+    Loads ASCII art from a text file.
     """
 
     return read_file(filename)
@@ -139,18 +160,19 @@ def load_ascii(filename: str) -> str:
 
 def escape_markdown(text: str) -> str:
     """
-    Escape characters that could break markdown tables
-    or formatting.
+    Escapes characters that could interfere with Markdown.
     """
 
     if text is None:
         return ""
 
+    text = str(text)
+
     replacements = {
         "|": "\\|",
         "*": "\\*",
         "_": "\\_",
-        "`": "\\`"
+        "`": "\\`",
     }
 
     for old, new in replacements.items():

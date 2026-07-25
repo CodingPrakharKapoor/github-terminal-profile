@@ -1,0 +1,185 @@
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="1200"
+height="564"
+viewBox="0 0 1200 564">
+
+<rect width="1200" height="564" fill="#161b22" /><text
+    x="30"
+    y="50"
+    fill="#c9d1d9"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="18"
+    font-weight="normal">
+      /\_/\\
+</text><text
+    x="30"
+    y="72"
+    fill="#c9d1d9"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="18"
+    font-weight="normal">
+     ( o.o )
+</text><text
+    x="30"
+    y="94"
+    fill="#c9d1d9"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="18"
+    font-weight="normal">
+      &gt; ^ &lt;
+</text><text
+    x="420"
+    y="50"
+    fill="#a5d6ff"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="24"
+    font-weight="normal">
+Prakhar Kapoor
+</text><text
+    x="420"
+    y="72"
+    fill="#8b949e"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="16"
+    font-weight="normal">
+CodingPrakharKapoor
+</text><text
+    x="420"
+    y="116"
+    fill="#a5d6ff"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="20"
+    font-weight="normal">
+System
+</text><text
+    x="420"
+    y="138"
+    fill="#8b949e"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="18"
+    font-weight="normal">
+——————————————————————————————————————————
+</text><text
+        x="420"
+        y="160"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">OS</tspan><tspan fill="#8b949e">..............................</tspan><tspan fill="#a5d6ff">Windows 11</tspan>
+
+    </text><text
+        x="420"
+        y="182"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Editor</tspan><tspan fill="#8b949e">.............................</tspan><tspan fill="#a5d6ff">VS Code</tspan>
+
+    </text><text
+        x="420"
+        y="204"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Shell</tspan><tspan fill="#8b949e">...........................</tspan><tspan fill="#a5d6ff">PowerShell</tspan>
+
+    </text><text
+        x="420"
+        y="226"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Terminal</tspan><tspan fill="#8b949e">..................</tspan><tspan fill="#a5d6ff">Windows Terminal</tspan>
+
+    </text><text
+    x="420"
+    y="270"
+    fill="#a5d6ff"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="20"
+    font-weight="normal">
+GitHub
+</text><text
+    x="420"
+    y="292"
+    fill="#8b949e"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="18"
+    font-weight="normal">
+——————————————————————————————————————————
+</text><text
+        x="420"
+        y="314"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Repositories</tspan><tspan fill="#8b949e">............................</tspan><tspan fill="#a5d6ff">36</tspan>
+
+    </text><text
+        x="420"
+        y="336"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Followers</tspan><tspan fill="#8b949e">................................</tspan><tspan fill="#a5d6ff">7</tspan>
+
+    </text><text
+        x="420"
+        y="358"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Stars</tspan><tspan fill="#8b949e">....................................</tspan><tspan fill="#a5d6ff">2</tspan>
+
+    </text><text
+        x="420"
+        y="380"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Commits</tspan><tspan fill="#8b949e">.................................</tspan><tspan fill="#a5d6ff">91</tspan>
+
+    </text><text
+    x="420"
+    y="424"
+    fill="#a5d6ff"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="20"
+    font-weight="normal">
+Statistics
+</text><text
+    x="420"
+    y="446"
+    fill="#8b949e"
+    font-family="Consolas, 'Courier New', monospace"
+    font-size="18"
+    font-weight="normal">
+——————————————————————————————————————————
+</text><text
+        x="420"
+        y="468"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Additions</tspan><tspan fill="#8b949e">..........................</tspan><tspan fill="#3fb950">+24,581</tspan>
+
+    </text><text
+        x="420"
+        y="490"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Deletions</tspan><tspan fill="#8b949e">...........................</tspan><tspan fill="#f85149">-8,143</tspan>
+
+    </text><text
+        x="420"
+        y="512"
+        font-family="Consolas, 'Courier New', monospace"
+        font-size="18">
+
+    <tspan fill="#ffa657">Net LOC</tspan><tspan fill="#8b949e">............................</tspan><tspan fill="#3fb950">+16,438</tspan>
+
+    </text>
+
+</svg>

@@ -16,31 +16,36 @@ CONFIG_FILE = Path("config.json")
 
 
 class Config:
+
     def __init__(self, config_path: Path = CONFIG_FILE):
+
         if not config_path.exists():
             raise FileNotFoundError(
                 f"Configuration file '{config_path}' was not found."
             )
 
-        with open(config_path, "r", encoding="utf-8") as f:
-            self._config = json.load(f)
+        with open(config_path, "r", encoding="utf-8") as file:
+            self._config = json.load(file)
 
-    # -------------------------
-    # Internal helper
-    # -------------------------
+    # -------------------------------------------------
+    # Internal Helpers
+    # -------------------------------------------------
 
     def _get(self, *keys, default=None):
         """
-        Safely retrieve nested values.
+        Safely retrieves nested configuration values.
 
         Example:
             config._get("personal", "name")
         """
+
         value = self._config
 
         for key in keys:
+
             if not isinstance(value, dict):
                 return default
+
             value = value.get(key)
 
             if value is None:
@@ -48,106 +53,152 @@ class Config:
 
         return value
 
-    # -------------------------
+    def section(self, name: str):
+        """
+        Returns an entire top-level section.
+
+        Example:
+
+            config.section("personal")
+            config.section("socials")
+        """
+
+        return self._get(name, default={})
+
+    # -------------------------------------------------
+    # Generic Access
+    # -------------------------------------------------
+
+    def get(self, *keys, default=None):
+        """
+        Public generic getter.
+
+        Examples
+
+            config.get("personal", "name")
+
+            config.get("system", "terminal")
+
+            config.get("theme", "ascii_file")
+        """
+
+        return self._get(*keys, default=default)
+
+    # -------------------------------------------------
     # Personal
-    # -------------------------
+    # -------------------------------------------------
+
+    @property
+    def personal(self):
+        return self.section("personal")
 
     @property
     def name(self):
-        return self._get("personal", "name")
+        return self.get("personal", "name")
 
     @property
     def title(self):
-        return self._get("personal", "title")
+        return self.get("personal", "title")
 
     @property
     def subtitle(self):
-        return self._get("personal", "subtitle")
+        return self.get("personal", "subtitle")
 
     @property
     def github_username(self):
-        return self._get("personal", "github_username")
+        return self.get("personal", "github_username")
 
     @property
     def birthday(self):
-        return self._get("personal", "birthday")
+        return self.get("personal", "birthday")
 
     @property
     def location(self):
-        return self._get("personal", "location")
+        return self.get("personal", "location")
 
     @property
     def email(self):
-        return self._get("personal", "email")
+        return self.get("personal", "email")
 
     @property
     def website(self):
-        return self._get("personal", "website")
+        return self.get("personal", "website")
 
-    # -------------------------
-    # Socials
-    # -------------------------
-
-    @property
-    def socials(self):
-        return self._get("socials", default={})
-
-    # -------------------------
-    # System
-    # -------------------------
-
-    @property
-    def system(self):
-        return self._get("system", default={})
-
-    # -------------------------
+    # -------------------------------------------------
     # Skills
-    # -------------------------
+    # -------------------------------------------------
 
     @property
     def languages(self):
-        return self._get("languages", default=[])
+        return self.get("languages", default=[])
 
     @property
     def frameworks(self):
-        return self._get("frameworks", default=[])
+        return self.get("frameworks", default=[])
 
     @property
     def databases(self):
-        return self._get("databases", default=[])
+        return self.get("databases", default=[])
 
     @property
     def tools(self):
-        return self._get("tools", default=[])
+        return self.get("tools", default=[])
 
-    # -------------------------
-    # Projects / Achievements
-    # -------------------------
+    # -------------------------------------------------
+    # Projects
+    # -------------------------------------------------
 
     @property
     def current_projects(self):
-        return self._get("currently_working_on", default=[])
+        return self.get("currently_working_on", default=[])
 
     @property
     def achievements(self):
-        return self._get("achievements", default=[])
+        return self.get("achievements", default=[])
 
-    # -------------------------
-    # UI Sections
-    # -------------------------
+    # -------------------------------------------------
+    # Socials
+    # -------------------------------------------------
 
     @property
-    def sections(self):
-        return self._get("sections", default={})
+    def socials(self):
+        return self.get("socials", default={})
 
-    # -------------------------
+    # -------------------------------------------------
+    # System
+    # -------------------------------------------------
+
+    @property
+    def system(self):
+        return self.get("system", default={})
+
+    # -------------------------------------------------
     # Theme
-    # -------------------------
+    # -------------------------------------------------
 
     @property
     def theme(self):
-        return self._get("theme", default={})
+        return self.get("theme", default={})
+
+    # -------------------------------------------------
+    # UI
+    # -------------------------------------------------
+
+    @property
+    def sections(self):
+        return self.get("sections", default={})
+
+    # -------------------------------------------------
+    # Entire Configuration
+    # -------------------------------------------------
+
+    @property
+    def raw(self):
+        """
+        Returns the entire configuration dictionary.
+        """
+
+        return self._config
 
 
-# Singleton instance used throughout the project
 config = Config()

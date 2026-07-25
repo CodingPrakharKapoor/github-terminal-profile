@@ -3,59 +3,65 @@
         "name": "Prakhar Kapoor",
         "title": "Software Engineer",
         "subtitle": "Competitive Programmer | ICPC Asia West Regionalist",
-        "github_username": "codingprakharkapoor",
-        "birthday": "2004-01-01",
-        "location": "Prayagraj, India",
-        "email": "your_email@example.com",
-        "website": "https://yourwebsite.com"
-    },
 
-    "socials": {
-        "linkedin": "https://linkedin.com/in/yourprofile",
-        "twitter": "",
-        "portfolio": "",
-        "leetcode": "YOUR_LEETCODE_USERNAME",
-        "codeforces": "YOUR_CODEFORCES_USERNAME",
-        "codechef": "YOUR_CODECHEF_USERNAME",
-        "hackerrank": "YOUR_HACKERRANK_USERNAME"
+        "github_username": "CodingPrakharKapoor",
+
+        "birthday": "2004-01-01",
+
+        "email": "your_email@example.com",
+
+        "website": "https://yourwebsite.com",
+
+        "location": "Prayagraj, India"
     },
 
     "system": {
         "os": "Windows 11",
-        "editor": "VS Code",
+        "kernel": "NT 10.0",
         "terminal": "PowerShell",
-        "shell": "PowerShell"
+        "shell": "PowerShell",
+        "editor": "VS Code",
+        "theme": "Dark",
+        "font": "Cascadia Code"
     },
 
-    "languages": [
-        "Java",
-        "Python",
-        "C++",
-        "JavaScript",
-        "SQL"
-    ],
+    "terminal": {
+        "host": "GLA University",
+        "uptime_label": "Uptime",
+        "ascii_file": "ascii.txt"
+    },
 
-    "frameworks": [
-        "Spring Boot",
-        "React",
-        "Next.js",
-        "Node.js"
-    ],
+    "skills": {
+        "languages": [
+            "Java",
+            "Python",
+            "C++",
+            "JavaScript",
+            "SQL"
+        ],
 
-    "databases": [
-        "PostgreSQL",
-        "MySQL",
-        "MongoDB"
-    ],
+        "frameworks": [
+            "Spring Boot",
+            "React",
+            "Next.js",
+            "Node.js"
+        ],
 
-    "tools": [
-        "Git",
-        "GitHub",
-        "Docker",
-        "Linux"
-    ],
+        "databases": [
+            "PostgreSQL",
+            "MongoDB",
+            "MySQL"
+        ],
 
-    "currently_working_on": [
+        "tools": [
+            "Git",
+            "GitHub",
+            "Docker",
+            "Linux"
+        ]
+    },
+
+    "projects": [
         "The Prakhar Chronicle",
         "GitHub Terminal Dashboard"
     ],
@@ -66,25 +72,36 @@
         "Smart India Hackathon"
     ],
 
-    "sections": {
-        "show_age": true,
-        "show_followers": true,
-        "show_stars": true,
-        "show_repositories": true,
-        "show_commits": true,
-        "show_contributed_repositories": true,
-        "show_lines_of_code": true,
-        "show_languages": true,
-        "show_frameworks": true,
-        "show_tools": true,
-        "show_competitive_programming": true,
-        "show_achievements": true,
-        "show_socials": true
+    "socials": {
+        "github": "https://github.com/CodingPrakharKapoor",
+        "linkedin": "https://linkedin.com/in/yourprofile",
+        "portfolio": "",
+        "leetcode": "",
+        "codeforces": "",
+        "codechef": "",
+        "hackerrank": ""
     },
 
     "theme": {
-        "mode": "dark",
+        "template": "template.md",
         "ascii_file": "ascii.txt",
-        "template": "template.md"
+        "mode": "dark"
+    },
+
+    "sections": {
+
+        "show_about": true,
+
+        "show_system": true,
+
+        "show_github": true,
+
+        "show_projects": true,
+
+        "show_skills": true,
+
+        "show_achievements": true,
+
+        "show_socials": true
     }
 }
