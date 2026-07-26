@@ -52,7 +52,7 @@ text, tspan {white-space: pre;}
 
 <tspan x="390" y="50" class="cc">. </tspan><tspan class="key">OS</tspan>:<tspan class="cc"> {{OS_DOTS}} </tspan><tspan class="value">{{OS}}</tspan>
 
-<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc">{{AGE_DOTS}}</tspan><tspan class="value">{{AGE}}</tspan>
+<tspan x="390" y="70" class="cc">. </tspan><tspan class="key">Uptime</tspan>:<tspan class="cc"> {{AGE_DOTS}} </tspan><tspan class="value">{{AGE}}</tspan>
 
 <tspan x="390" y="90" class="cc">. </tspan><tspan class="key">Host</tspan>:<tspan class="cc"> {{HOST_DOTS}} </tspan><tspan class="value">{{HOST}}</tspan>
 
